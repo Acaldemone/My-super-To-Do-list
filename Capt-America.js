@@ -1,7 +1,7 @@
 //Create functions for the different requirements
-    //Users should be able to view all of the to-do tasks
-    //Users should be able to add a to-do to the list of to-do tasks 
-    //Users should be able to remove to-do's, this could be either deletion or crossing out
+    //Users should be able to view all of the to-do tasks DONE
+    //Users should be able to add a to-do to the list of to-do tasks DONE
+    //Users should be able to remove to-do's, this could be either deletion or crossing out DONE
     //The page should be aesthetically pleasing (aka be styled)
 
     //STRETCH Goals
@@ -9,7 +9,28 @@
     //Make the list persist through a refresh of the page by using local storage to store to-do's
     //Archive completed tasks in a viewable location on screen
 //////////////////////////////////////////////////////////////////////////////////////////////////
-//let mySuperList = document.querySelectorAll('li');
+
+//create a function that will allow users to cross-out/delete list items
+let mySuperList = document.querySelectorAll('li');
+
+for (i = 0;i < mySuperList.length; i++) {
+    let elem = document.createElement('span');
+    var txt = document.createTextNode("\u00D7")
+    elem.className = 'del';
+    elem.appendChild(txt);
+    mySuperList[i].appendChild(elem);
+
+}
+
+var dele = document.getElementsByClassName("del");
+for (var i = 0; i < dele.length; i++) {
+  dele[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //create a function that will add user inputs to a to do list
 function addListItem() {
     //create an element
@@ -21,33 +42,27 @@ function addListItem() {
     let userText = document.createTextNode(userInput);
     addLi.appendChild(userText);
     let userList = document.querySelector('#userOL');
-    userList.appendChild(addLi);
+    //identify an edge case of nothing being sumbitted in the input.
     if(userInput === '') {
         alert('Create your super list')
-    } 
+    } else {
+        userList.appendChild(addLi);
+    }
+    //apply a similiar close function as used earlier
+    let elem = document.createElement('span');
+    var txt = document.createTextNode("\u00D7")
+    elem.className = 'del';
+    elem.appendChild(txt);
+    addLi.appendChild(elem);
     
-    //else; {
-       // document.getElementById("#userOL").appendChild(addLi)
-    //}
-    //document.getElementById(userList).value = "";
-
-    //let btn = document.querySelector('#addbtn');
-    //btn.addEventListener("click", () => alert('addbtn was clicked'))
-    //console.log(btn)
+   //give the close function the actual close functionallity
+    for (var i = 0; i < dele.length; i++) {
+      dele[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+   
     return userList
 }
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////
-//create a function that will allow users to cross-out/delete list items
-
-
-
-
-
-    
-
-//document.querySelector("input").id
